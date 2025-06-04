@@ -7,6 +7,8 @@ import { ThirdwebProvider } from "thirdweb/react"
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import LoadingScreen from "@/components/LoadingScreen"
+import AnnouncementBanner from "@/components/notifications/AnnouncementBanner"
+import TelegramButton from "@/components/notifications/TelegramButton"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -87,8 +89,10 @@ export default function RootLayout({
       <body className={`${poppins.className} min-h-screen bg-[#0f0a1a] text-[#f0e6ff] overflow-x-hidden`}>
         <ThirdwebProvider>
           <Navigation />
+          <AnnouncementBanner />
           {children}
           <Footer />
+          <TelegramButton />
         </ThirdwebProvider>
       </body>
     </html>
