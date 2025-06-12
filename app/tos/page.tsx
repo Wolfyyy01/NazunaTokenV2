@@ -48,11 +48,13 @@ export default function TermsOfService() {
       icon: Scale,
       content: [
         "NZNA is a memecoin and has no guaranteed utility, value, or financial return.",
+        "This token is part of a public presale. Participation in the presale is voluntary, and purchase data (wallet address, amount contributed, and tokens allocated) is stored securely for distribution purposes.",
         "Token value is purely speculative. You are responsible for your own investment decisions.",
         "This is not an investment product. It is intended as a fun, experimental token built by a solo developer.",
         "We do not promise any roadmap completion, exchange listing, or long-term maintenance.",
       ],
-    },
+    }
+
   ];
 
   return (

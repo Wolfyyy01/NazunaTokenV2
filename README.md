@@ -27,7 +27,7 @@
 - 📍 Website: [nazunatoken.xyz](https://nazunatoken.xyz)
 - 🐦 Twitter: [@NazunaToken](https://x.com/NazunaToken)
 - 💬 Discord: [Nazuna Token Server](https://discord.com/invite/nzUU7dBE47)
-- 📜 Whitepaper: [Read here](https://nazunatoken.xyz/whitepaper)
+- 📜 Whitepaper: [Read here](https://nazunatoken.wolfy01.xyz/whitepaper)
 - 💼 Smart Contract: [View on PolygonScan](https://polygonscan.com/address/0x0469BbE0d678fE330C2689ad1c4B4d6b22218926)
 
 ---

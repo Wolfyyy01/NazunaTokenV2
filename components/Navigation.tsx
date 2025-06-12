@@ -21,6 +21,7 @@ export default function Navigation() {
     { href: "#tokenomics", label: "Tokenomics" },
     { href: "#roadmap", label: "Roadmap" },
     { href: "#buy", label: "How to Buy" },
+    { href: "/presale", label: "Presale" },
   ]
 
 
@@ -35,7 +36,7 @@ export default function Navigation() {
   const handleNavClick = (href: string) => {
     setIsOpen(false)
     if (pathname !== "/") {
-      window.location.href = `/${href}`;
+      window.location.href = `${href}`;
     } else {
       const element = document.querySelector(href);
       if (element) {

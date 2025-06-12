@@ -2,6 +2,7 @@
 import { ArrowUp } from "lucide-react"
 import Token3D from "./Token3D"
 import { constants } from "@/lib/constants"
+import Link from "next/link"
 
 export default function HeroSection() {
   return (
@@ -18,12 +19,15 @@ export default function HeroSection() {
             thrives in the moonlight. Join our nocturnal community and embrace the power of the night.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href={constants.discord_url} target="_blank" className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/30">
-              Discord
-            </a>
-            <a href="/whitepaper" className="px-8 py-3 rounded-full bg-transparent border-2 border-purple-500 text-purple-300 font-medium hover:bg-purple-900/30 transition-all duration-300">
+            <Link
+              href="/presale"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/30"
+            >
+              Join Presale
+            </Link>
+            <Link href="/whitepaper" className="px-8 py-3 rounded-full bg-transparent border-2 border-purple-500 text-purple-300 font-medium hover:bg-purple-900/30 transition-all duration-300">
               Whitepaper
-            </a>
+            </Link>
           </div>
           <div className="mt-10 flex items-center space-x-6">
             <div className="flex items-center">

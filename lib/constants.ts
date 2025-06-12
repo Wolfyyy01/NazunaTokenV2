@@ -5,8 +5,9 @@ import logo from "../public/logo.png";
 
 
 
-const base_url: string = "https://nazunatoken.wolfy01.me";
-const image_url: string = `https://nazunatoken.wolfy01.me`;
+
+const base_url: string = "https://nazunatoken.xyz";
+const image_url: string = `https://nazunatoken.xyz`;
 const contract_address: string = "0x0469BbE0d678fE330C2689ad1c4B4d6b22218926";
 const total_supply: string = "10,000,000"; // 10 million tokens
 

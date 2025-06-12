@@ -89,10 +89,8 @@ export default function RootLayout({
       <body className={`${poppins.className} min-h-screen bg-[#0f0a1a] text-[#f0e6ff] overflow-x-hidden`}>
         <ThirdwebProvider>
           <Navigation />
-          <AnnouncementBanner />
           {children}
           <Footer />
-          <TelegramButton />
         </ThirdwebProvider>
       </body>
     </html>

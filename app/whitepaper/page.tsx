@@ -41,6 +41,19 @@ export default function Whitepaper() {
                 "Future staking functionality is planned post-launch, with transparent rules and rewards, but only if community interest grows.",
             ],
         },
+        {
+            id: "presale",
+            title: "Presale Structure",
+            icon: Download,
+            content: [
+                "Nazuna Token is currently in a limited presale phase, split into 4 rounds over 60 days. Each round offers decreasing bonuses to early supporters.",
+                "Participants can contribute in POL (Polygon native token) via our website. Purchases are recorded securely in a local database for accurate distribution.",
+                "After the presale ends, all tokens will be claimable through the official claim page using the same wallet used to purchase.",
+                "Any unclaimed tokens may be burned or redistributed based on community feedback.",
+                "Token price increases slightly each phase to reward early adoption and help stabilize initial liquidity.",
+            ],
+        }
+
     ];
 
 
@@ -49,7 +62,7 @@ export default function Whitepaper() {
         { label: "Total Supply", value: constants.total_supply },
         { label: "Decimals", value: "18" },
         { label: "Smart Contract", value: constants.contract_address },
-        { label: "Launch Price", value: "Undefined" },
+        { label: "Presale Range", value: "0.05 – 0.3 POL" },
         { label: "Platform", value: "Deployed via thirdweb.com" },
     ];
 
@@ -172,7 +185,9 @@ export default function Whitepaper() {
                             <p className="text-purple-200 dark:text-purple-200 light:text-gray-600">
                                 The Nazuna Token economic model is designed to incentivize long-term holding, community participation,
                                 and ecosystem growth through carefully balanced token distribution and utility mechanisms.
+                                A portion of the supply is allocated to presale participants, recorded transparently for fair distribution.
                             </p>
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <h3 className="text-lg font-semibold text-pink-400 dark:text-pink-400 mb-3 light:text-purple-600">
@@ -324,6 +339,10 @@ export default function Whitepaper() {
                             <p className="font-semibold text-yellow-400">
                                 Nazuna Token is a utility token and should not be considered a security or investment contract.
                             </p>
+                            <p className="text-yellow-400">
+                                Participation in the presale is voluntary and non-refundable. Ensure you are using the correct wallet address and understand the risks before contributing.
+                            </p>
+
                         </div>
                     </div>
                 </div>
