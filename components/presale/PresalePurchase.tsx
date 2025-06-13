@@ -47,11 +47,11 @@ export default function PresalePurchase() {
   const adjustAmount = (increment: boolean) => {
     const current = Number.parseFloat(POLAmount || "0")
     const newAmount = increment ? current + 0.1 : Math.max(0.1, current - 0.1)
-    setPOLAmount(newAmount.toFixed(0.0001))
+    setPOLAmount(newAmount.toFixed(1))
   }
 
   const presaleTiers = [
-    { min: 0.0001, max: 500, bonus: 0, label: "Tier 1" },
+    { min: 1, max: 500, bonus: 0, label: "Tier 1" },
     { min: 500, max: 5000, bonus: 10, label: "Tier 2" },
     { min: 5000, max: 9000, bonus: 20, label: "Tier 3" },
     { min: 9000, max: 23000, bonus: 35, label: "Tier 4" },
@@ -111,7 +111,7 @@ export default function PresalePurchase() {
     })
     const amountNumber = POLAmount;
     const amountWei = toWei(amountNumber.toString());
-    if (!isConnected || Number(amountNumber) < 0.0001) return;
+    if (!isConnected || Number(amountNumber) < 1) return;
 
     const tokensForUser = Math.floor(totalTokens);
     setIsLoading(true);
@@ -120,7 +120,7 @@ export default function PresalePurchase() {
       const transaction = prepareTransaction({
         to: '0xE23Ef3c448e16e43e2E6925F9321853585F8bcEB',
         value: amountWei,
-        chain: sepolia,
+        chain: polygon,
         client
       })
       if (!account) {
@@ -153,7 +153,6 @@ export default function PresalePurchase() {
       setNotifType("success");
       setShowNotif(true);
 
-      console.log(totalTokens, tokensForUser, amountNumber, walletAddress);
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/presale-stats/buy`, {
         wallet: walletAddress,
         amount: Number.parseFloat(amountNumber || "0"),
@@ -255,8 +254,8 @@ export default function PresalePurchase() {
                     type="number"
                     value={POLAmount}
                     onChange={(e) => setPOLAmount(e.target.value)}
-                    min="0.0001"
-                    step="0.0001"
+                    min="1"
+                    step="1"
                     className="flex-1 px-4 py-3 bg-purple-900/30 dark:bg-purple-900/30 light:bg-purple-100/50 border border-purple-800/30 dark:border-purple-800/30 light:border-purple-200/50 rounded-lg text-white dark:text-white light:text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <button
@@ -316,7 +315,7 @@ export default function PresalePurchase() {
               {/* Purchase Button */}
               <button
                 onClick={purchaseTokens}
-                disabled={!isConnected || isLoading || Number.parseFloat(POLAmount || "0") < 0.0001}
+                disabled={!isConnected || isLoading || Number.parseFloat(POLAmount || "0") < 1}
                 className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isLoading ? (
