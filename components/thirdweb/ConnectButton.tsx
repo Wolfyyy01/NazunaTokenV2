@@ -1,3 +1,4 @@
+
 import client from '@/lib/client'
 import React from 'react'
 import { ConnectButton, darkTheme, useActiveAccount, useWalletBalance, useWalletDetailsModal } from 'thirdweb/react'

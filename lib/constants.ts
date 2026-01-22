@@ -1,3 +1,4 @@
+
 import { getContract } from "thirdweb";
 import client from "./client";
 import { polygon } from "thirdweb/chains";
