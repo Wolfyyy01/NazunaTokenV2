@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function AdBanner() {
   return (
-    <div id="frame" className="w-full relative z-[99998] py-8">
+    <div className="w-full relative z-[99998] py-8 frame-container">
       <iframe
         {...{ "data-aa": "2425172" }}
         src="//acceptable.a-ads.com/2425172/?size=Adaptive&background_color=5b226a"

@@ -21,6 +21,7 @@ export default function Navigation() {
     { href: "#tokenomics", label: "Tokenomics" },
     { href: "#roadmap", label: "Roadmap" },
     { href: "#buy", label: "How to Buy" },
+    { href: "/earn", label: "Earn" },
     { href: "https://zealy.io/cw/nazunatoken/invite/O0OEfqjgalnAs9_qdj0JY", label: "Join Zealy" },
   ]
 
@@ -40,8 +41,13 @@ export default function Navigation() {
       return;
     }
 
+    if (href.startsWith("/")) {
+      window.location.href = href;
+      return;
+    }
+
     if (pathname !== "/") {
-      window.location.href = `${href}`;
+      window.location.href = `/${href}`;
     } else {
       if (href.startsWith("#")) {
         const element = document.querySelector(href);

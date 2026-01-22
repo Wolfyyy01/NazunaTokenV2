@@ -7,19 +7,22 @@ import CommunitySection from "@/components/CommunitySection"
 import PageTransition from "@/components/PageTransition"
 import LoadingScreen from "@/components/LoadingScreen"
 import AdBanner from "@/components/AdBanner"
+import StickyAd from "@/components/StickyAd"
 
 export default function Home() {
   return (
     <PageTransition>
       <main>
-
+        <StickyAd />
         <LoadingScreen />
         <HeroSection />
         <AdBanner />
         <AboutSection />
         <TokenomicsSection />
+        <AdBanner />
         <RoadmapSection />
         <HowToBuySection />
+        <AdBanner />
         <CommunitySection />
       </main>
     </PageTransition>
