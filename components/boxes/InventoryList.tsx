@@ -31,10 +31,10 @@ export default function InventoryList() {
   });
 
   // Calculăm reward-ul în timp real (aproximativ) sau folosim ce e pe lanț
-  // Funcția calculateRewards din contract e view, o putem apela pentru precizie maximă
+  // Folosim availableRewards pentru a include și reward-urile stocate (unclaimed) chiar dacă nu mai avem stake activ
   const { data: currentRewards, refetch: refetchCurrentRewards } = useReadContract({
     contract: stakingContract,
-    method: "function calculateRewards(address _user) view returns (uint256)",
+    method: "function availableRewards(address _staker) view returns (uint256)",
     params: [account?.address || ""],
   });
 
