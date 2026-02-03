@@ -1,12 +1,13 @@
 import { constants } from "@/lib/constants"
 import Image from "next/image"
-import { LiaDiscord, LiaTelegram, LiaTwitter } from "react-icons/lia"
+import { LiaDiscord, LiaEnvelope, LiaTelegram, LiaTwitter } from "react-icons/lia"
 
 export default function Footer() {
   const socialLinks = [
     { icon: LiaDiscord, name: "Discord", href: constants.discord_url },
     { icon: LiaTwitter, name: "Twitter", href: constants.twitter_url },
     { icon: LiaTelegram, name: "Telegram", href: constants.telegram_url },
+    { icon: LiaEnvelope, name: "Email", href: `mailto:${constants.email}` },
   ]
 
   const footerLinks = [
@@ -37,7 +38,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-purple-800/30 flex flex-col md:flex-row justify-between">
-          <p className="text-purple-400 text-sm">© 2023 Nazuna Token. All rights reserved. With 💜 by Wolfy!</p>
+          <p className="text-purple-400 text-sm">© 2026 Nazuna Token. All rights reserved. With 💜 by Wolfy!</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             {footerLinks.map((link, index) => (
               <a key={index} href={link.href} className="text-purple-300 hover:text-pink-400 text-sm transition">

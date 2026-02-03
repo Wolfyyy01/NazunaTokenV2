@@ -1,15 +1,27 @@
 
-"use client"
-
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import PageTransition from "@/components/PageTransition"
 import AdBanner from "@/components/AdBanner"
 import StickyAd from "@/components/StickyAd"
-import { ExternalLink, Gift, Coins, Wallet, CoinsIcon } from "lucide-react"
+import { ExternalLink, Gift, Coins, Wallet, CoinsIcon, Layers } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Earn Crypto - Nazuna Token",
+  description: "Discover the best ways to earn free cryptocurrency and NZNA tokens.",
+};
 
 export default function EarnPage() {
   const earnMethods = [
+    {
+      title: "Staking Boxes",
+      description: "Buy and stake boxes to earn NZNA tokens passively. High APY and exclusive rewards.",
+      link: "/boxes",
+      icon: Layers,
+      buttonText: "Start Staking",
+      isInternal: true
+    },
     {
       title: "FaucetPay",
       description: "Microwallet provider and earning platform. Earn crypto by completing tasks, surveys, and using faucets.",
@@ -72,12 +84,12 @@ export default function EarnPage() {
                 <p className="text-purple-200 mb-6 flex-grow">{method.description}</p>
                 <a
                   href={method.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={method.isInternal ? "_self" : "_blank"}
+                  rel={method.isInternal ? "" : "noopener noreferrer"}
                   className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/30 flex items-center justify-center"
                 >
                   {method.buttonText}
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  {method.isInternal ? null : <ExternalLink className="ml-2 h-4 w-4" />}
                 </a>
               </div>
             ))}
@@ -94,8 +106,6 @@ export default function EarnPage() {
             </p>
           </div>
         </main>
-
-        
       </div>
     </PageTransition>
   )

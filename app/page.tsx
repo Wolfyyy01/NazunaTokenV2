@@ -8,6 +8,7 @@ import PageTransition from "@/components/PageTransition"
 import LoadingScreen from "@/components/LoadingScreen"
 import AdBanner from "@/components/AdBanner"
 import StickyAd from "@/components/StickyAd"
+import StakingPromoSection from "@/components/StakingPromoSection"
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <StickyAd />
         <LoadingScreen />
         <HeroSection />
+        <StakingPromoSection />
         <AdBanner />
         <AboutSection />
         <TokenomicsSection />

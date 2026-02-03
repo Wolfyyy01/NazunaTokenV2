@@ -9,6 +9,7 @@ import Footer from "@/components/Footer"
 import LoadingScreen from "@/components/LoadingScreen"
 import AnnouncementBanner from "@/components/notifications/AnnouncementBanner"
 import TelegramButton from "@/components/notifications/TelegramButton"
+import { Toaster } from "@/components/ui/toaster"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -91,6 +92,7 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
+          <Toaster />
         </ThirdwebProvider>
       </body>
     </html>

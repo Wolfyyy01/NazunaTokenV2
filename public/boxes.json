@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Common Nazuna Box",
+    "description": "The entry key to the Nazuna ecosystem. This box contains a reliable mining core, perfect for users starting their staking journey. By staking this NFT in The Vault, you unlock a steady stream of $NZNA tokens.\n\n💰 Mint Price: 10 POL\n⚡ Staking Reward: ~48 $NZNA / day",
+    "image": "common_box.png",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Staking Power",
+        "value": "Level 1"
+      },
+      {
+        "trait_type": "Daily Yield",
+        "value": "48 NZNA"
+      }
+    ]
+  },
+  {
+    "name": "Rare Nazuna Box",
+    "description": "A sophisticated storage unit powered by enhanced energetic cores. The Rare Box is designed for dedicated holders who want to accelerate their portfolio growth. It represents the sweet spot between investment and return.\n\n💰 Mint Price: 40 POL\n⚡ Staking Reward: ~240 $NZNA / day",
+    "image": "box.png",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Rare"
+      },
+      {
+        "trait_type": "Staking Power",
+        "value": "Level 2"
+      },
+      {
+        "trait_type": "Daily Yield",
+        "value": "240 NZNA"
+      }
+    ]
+  },
+  {
+    "name": "Legendary Nazuna Box",
+    "description": "The pinnacle of Nazuna engineering. This artifact is scarce and highly sought after. Possessing the highest output efficiency, the Legendary Box is the ultimate asset for maximizing $NZNA accumulation.\n\n💰 Mint Price: 150 POL\n⚡ Staking Reward: ~720 $NZNA / day",
+    "image": "legendary_box.png",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Legendary"
+      },
+      {
+        "trait_type": "Staking Power",
+        "value": "MAX"
+      },
+      {
+        "trait_type": "Daily Yield",
+        "value": "720 NZNA"
+      }
+    ]
+  }
+]

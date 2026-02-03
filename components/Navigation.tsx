@@ -7,8 +7,6 @@ import { constants } from "@/lib/constants"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 
-
-
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -18,13 +16,8 @@ export default function Navigation() {
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#tokenomics", label: "Tokenomics" },
-    { href: "#roadmap", label: "Roadmap" },
-    { href: "#buy", label: "How to Buy" },
     { href: "/earn", label: "Earn" },
-    { href: "https://zealy.io/cw/nazunatoken/invite/O0OEfqjgalnAs9_qdj0JY", label: "Join Zealy" },
   ]
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +49,6 @@ export default function Navigation() {
         }
       }
     }
-
   }
 
   return (
@@ -97,7 +89,18 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Connect Wallet Button */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="/boxes" className="relative group">
+               <div className="relative w-16 h-16 animate-bounce">
+                 <Image 
+                   src="/box.png" 
+                   alt="Gift Box" 
+                   fill 
+                   className="object-contain drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]"
+                 />
+               </div>
+               <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
+            </a>
             <ConnectWallet />
           </div>
 
@@ -130,7 +133,18 @@ export default function Navigation() {
               {item.label}
             </button>
           ))}
-          <div className="pt-4">
+          <div className="pt-4 flex items-center justify-between">
+            <a href="/boxes" className="flex items-center gap-2 text-pink-400 font-medium">
+                <div className="relative w-6 h-6 animate-bounce">
+                  <Image 
+                    src="/box.png" 
+                    alt="Gift Box" 
+                    fill 
+                    className="object-contain"
+                  />
+                </div>
+                <span>Open Boxes</span>
+            </a>
             <ConnectWallet />
           </div>
         </div>

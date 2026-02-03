@@ -1,25 +1,38 @@
+'use client'
 
-import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowLeft, Download, BookOpen, Target, Zap, Users, Shield, TrendingUp, Globe } from "lucide-react"
-import { constants } from "@/lib/constants"
-import PageTransition from "@/components/PageTransition"
-
+// ATENTIE: Muta exportul de metadata in fisierul parinte (page.tsx sau layout.tsx)
+// deoarece 'use client' nu permite export de metadata.
+/*
 export const metadata: Metadata = {
     title: "Whitepaper - Nazuna Token",
-    description: "Technical whitepaper and comprehensive documentation for Nazuna Token cryptocurrency project.",
+    description: "Technical whitepaper and ecosystem documentation for Nazuna Token (NZNA).",
 }
+*/
+
+import Link from "next/link"
+import { useState } from "react"
+import { ArrowLeft, BookOpen, Target, Zap, Users, Shield, TrendingUp, Globe, Copy, Check } from "lucide-react"
+import { constants } from "@/lib/constants"
 
 export default function Whitepaper() {
+    // State pentru butonul de copiere
+    const [copied, setCopied] = useState(false)
+
+    const handleCopyAddress = () => {
+        navigator.clipboard.writeText(constants.contract_address)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+    }
+
     const sections = [
         {
             id: "abstract",
             title: "Abstract",
             icon: BookOpen,
             content: [
-                "Nazuna Token (NZNA) is a community-driven memecoin inspired by the anime character Nazuna Nanakusa from 'Call of the Night'.",
-                "It was created for fun, exploration of anime x crypto themes, and potential utility within side projects such as staking or community events.",
-                "This whitepaper presents the current state of the project, technical foundations, tokenomics, and goals — not guarantees.",
+                "Nazuna Token ($NZNA) is a community-driven asset inspired by the 'Call of the Night' aesthetic, built for those who thrive in the digital moonlight.",
+                "Unlike traditional memecoins that rely solely on hype, Nazuna aims to build a gamified ecosystem where holders (Hunters) earn their keep through activity, lore engagement, and community challenges.",
+                "This document outlines the transition from our Genesis phase to a fully realized ecosystem on the Polygon network.",
             ],
         },
         {
@@ -27,9 +40,9 @@ export default function Whitepaper() {
             title: "Problem Statement",
             icon: Target,
             content: [
-                "Most memecoins offer no real community engagement or functionality beyond speculative trading.",
-                "Nazuna Token aims to explore lightweight integrations with actual utility (staking, rewards, integrations with apps) while keeping the anime theme front and center.",
-                "It avoids overpromising and focuses on transparency and experimentation without misleading users.",
+                "The Web3 space is saturated with 'pump and dump' tokens that offer no longevity or reason to hold beyond speculative greed.",
+                "Communities are often treated as exit liquidity rather than participants.",
+                "Nazuna Token seeks to fix this by distributing supply through merit and activity (Proof of Hunt) rather than just selling it to the highest bidder.",
             ],
         },
         {
@@ -37,36 +50,70 @@ export default function Whitepaper() {
             title: "Our Approach",
             icon: Zap,
             content: [
-                "The project is built on Polygon for fast and low-cost transactions, deployed using thirdweb contracts (unmodified).",
-                "There is no central dashboard or platform — interaction is done through the smart contract and frontends built by the creator.",
-                "Future staking functionality is planned post-launch, with transparent rules and rewards, but only if community interest grows.",
+                "Fair Distribution: We rejected the traditional ICO model. Instead, we use 'Sprints' (via Zealy) and direct engagement to distribute tokens to active users.",
+                "Gamified Utility: The token is designed to be the key to future game — a future mechanism for redeeming exclusive digital collectibles and rewards.",
+                "Low Friction: Built on Polygon for negligible gas fees, ensuring that even small interactions are economically viable.",
             ],
         },
         {
-            id: "presale",
-            title: "Presale Structure",
-            icon: Download,
+            id: "distribution",
+            title: "Distribution Mechanism",
+            icon: TrendingUp, // Changed icon slightly to fit better
             content: [
-                "Nazuna Token is currently in a limited presale phase, split into 4 rounds over 60 days. Each round offers decreasing bonuses to early supporters.",
-                "Participants can contribute in POL (Polygon native token) via our website. Purchases are recorded securely in a local database for accurate distribution.",
-                "After the presale ends, all tokens will be claimable through the official claim page using the same wallet used to purchase.",
-                "Any unclaimed tokens may be burned or redistributed based on community feedback.",
-                "Token price increases slightly each phase to reward early adoption and help stabilize initial liquidity.",
+                "The Genesis Airdrop has successfully distributed the initial supply to early adopters.",
+                "Future distribution is algorithmic based on community seasons. We hold reserves for: Marketing, Liquidity Pool (LP), and Season 2 Rewards.",
+                "There is no 'presale' price. The value of $NZNA is determined by the community and the utility we build together.",
+                "Unclaimed tokens from expired airdrops are returned to the Community Treasury for future events.",
             ],
         }
-
     ];
 
+    // Datele pentru tabelul Tokenomics (din imaginile tale)
+    const tokenomicsTable = [
+        {
+            category: "Airdrop Genesis",
+            percent: "10,00 %",
+            amount: "1,000,000",
+            role: "Reward for hunters on Zealy.",
+            status: "Waiting"
+        },
+        {
+            category: "Liquidity Pool (LP)",
+            percent: "40,00 %",
+            amount: "4,000,000",
+            role: "Tokens to be paired with POL on Uniswap/QuickSwap.",
+            status: "Waiting"
+        },
+        {
+            category: "Marketing & Partners",
+            percent: "20,00 %",
+            amount: "2,000,000",
+            role: "Payments for promotion, influencers and future contests.",
+            status: "Waiting"
+        },
+        {
+            category: "Team (Dev)",
+            percent: "15,00 %",
+            amount: "1,500,000",
+            role: "Developer and founder allocation.",
+            status: "Waiting"
+        },
+        {
+            category: "Community & Rewards",
+            percent: "15,00 %",
+            amount: "1,500,000",
+            role: "Reserves for Zealy Season 2 or in-game rewards.",
+            status: "-"
+        }
+    ];
 
     const technicalSpecs = [
-        { label: "Blockchain", value: "Polygon (ERC-20 compatible)" },
-        { label: "Total Supply", value: constants.total_supply },
-        { label: "Decimals", value: "18" },
-        { label: "Smart Contract", value: constants.contract_address },
-        { label: "Presale Range", value: "0.05 – 0.3 POL" },
-        { label: "Platform", value: "Deployed via thirdweb.com" },
+        { label: "Blockchain", value: "Polygon (PoS)" },
+        { label: "Token Standard", value: "ERC-20" },
+        { label: "Total Supply", value: "9,987,500 NZNA" }, // Actualizat conform sumei din tabel
+        { label: "Launch Date", value: "January 2026" },
+        // Smart Contract row is handled separately in JSX
     ];
-
 
     return (
         <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -83,50 +130,30 @@ export default function Whitepaper() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div>
                             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                                <span className="gradient-text">Nazuna Token Whitepaper</span>
+                                <span className="gradient-text">Nazuna Whitepaper</span>
                             </h1>
-                            <p className="text-lg text-purple-200 dark:text-purple-200 light:text-gray-600">
-                                Version 1.0 • May 2025
+                            <p className="text-lg text-purple-200">
+                                Version 2.0 • January 2026
                             </p>
                         </div>
-                        {/* <button className="mt-6 md:mt-0 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/30 flex items-center">
-                            <Download className="h-5 w-5 mr-2" />
-                            Download PDF
-                        </button> */}
                     </div>
                 </div>
 
                 {/* Table of Contents */}
-                <div className="token-card p-8 rounded-2xl mb-12">
-                    <h2 className="text-2xl font-bold text-white dark:text-white mb-6 light:text-gray-800">Table of Contents</h2>
+                <div className="token-card p-8 rounded-2xl mb-12 border border-purple-500/20 bg-purple-900/10">
+                    <h2 className="text-2xl font-bold text-white mb-6">Table of Contents</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <a href="#abstract" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                1. Abstract
-                            </a>
-                            <a href="#problem" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                2. Problem Statement
-                            </a>
-                            <a href="#solution" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                3. Our Solution
-                            </a>
-                            <a href="#tokenomics" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                4. Tokenomics
-                            </a>
+                            <a href="#abstract" className="block text-purple-300 hover:text-pink-400 transition-colors">1. Abstract</a>
+                            <a href="#problem" className="block text-purple-300 hover:text-pink-400 transition-colors">2. Problem Statement</a>
+                            <a href="#solution" className="block text-purple-300 hover:text-pink-400 transition-colors">3. Our Solution</a>
+                            <a href="#tokenomics" className="block text-purple-300 hover:text-pink-400 transition-colors">4. Tokenomics</a>
                         </div>
                         <div className="space-y-2">
-                            <a href="#technology" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                5. Technology
-                            </a>
-                            <a href="#governance" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                6. Governance
-                            </a>
-                            <a href="#governance" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                7. Roadmap
-                            </a>
-                            <a href="#team" className="block text-purple-300 hover:text-pink-400 transition-colors">
-                                8. Team & Advisors
-                            </a>
+                            <a href="#technology" className="block text-purple-300 hover:text-pink-400 transition-colors">5. Technology</a>
+                            <a href="#governance" className="block text-purple-300 hover:text-pink-400 transition-colors">6. Governance</a>
+                            <a href="#roadmap" className="block text-purple-300 hover:text-pink-400 transition-colors">7. Roadmap</a>
+                            <a href="#team" className="block text-purple-300 hover:text-pink-400 transition-colors">8. Team</a>
                         </div>
                     </div>
                 </div>
@@ -134,16 +161,16 @@ export default function Whitepaper() {
                 {/* Main Sections */}
                 <div className="space-y-12">
                     {sections.map((section) => (
-                        <div key={section.id} id={section.id} className="token-card p-8 rounded-2xl">
+                        <div key={section.id} id={section.id} className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
                             <div className="flex items-center mb-6">
-                                <div className="w-12 h-12 bg-purple-900/50 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4 light:bg-purple-100/80">
-                                    <section.icon className="h-6 w-6 text-pink-400 dark:text-pink-400 light:text-purple-600" />
+                                <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                                    <section.icon className="h-6 w-6 text-pink-400" />
                                 </div>
-                                <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-800">{section.title}</h2>
+                                <h2 className="text-2xl font-bold text-white">{section.title}</h2>
                             </div>
                             <div className="space-y-4">
                                 {section.content.map((paragraph, index) => (
-                                    <p key={index} className="text-purple-200 dark:text-purple-200 leading-relaxed light:text-gray-600">
+                                    <p key={index} className="text-purple-200 leading-relaxed">
                                         {paragraph}
                                     </p>
                                 ))}
@@ -151,199 +178,160 @@ export default function Whitepaper() {
                         </div>
                     ))}
 
-                    {/* Technical Specifications */}
-                    <div id="technology" className="token-card p-8 rounded-2xl">
+                    {/* Technical Specifications with Copy Button */}
+                    <div id="technology" className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
                         <div className="flex items-center mb-6">
-                            <div className="w-12 h-12 bg-purple-900/50 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4 light:bg-purple-100/80">
-                                <Shield className="h-6 w-6 text-pink-400 dark:text-pink-400 light:text-purple-600" />
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                                <Shield className="h-6 w-6 text-pink-400" />
                             </div>
-                            <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-800">
-                                Technical Specifications
-                            </h2>
+                            <h2 className="text-2xl font-bold text-white">Technical Specifications</h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {technicalSpecs.map((spec, index) => (
-                                <div
-                                    key={index}
-                                    className="flex justify-between items-center p-4 bg-purple-900/30 dark:bg-purple-900/30 rounded-lg light:bg-purple-100/50"
-                                >
-                                    <span className="text-purple-300 dark:text-purple-300 light:text-gray-700">{spec.label}</span>
-                                    <span className="text-white dark:text-white font-semibold light:text-gray-800">{spec.value}</span>
+                                <div key={index} className="flex justify-between items-center p-4 bg-purple-900/30 rounded-lg border border-purple-500/10">
+                                    <span className="text-purple-300">{spec.label}</span>
+                                    <span className="text-white font-semibold">{spec.value}</span>
                                 </div>
                             ))}
+                            {/* Smart Contract Row with Copy Button */}
+                            <div className="flex justify-between items-center p-4 bg-purple-900/30 rounded-lg border border-purple-500/10 md:col-span-2">
+                                <span className="text-purple-300">Smart Contract</span>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-white font-mono text-sm sm:text-base">
+                                        {constants.contract_address.slice(0, 6)}...{constants.contract_address.slice(-6)}
+                                    </span>
+                                    <button 
+                                        onClick={handleCopyAddress}
+                                        className="p-2 bg-purple-700/50 hover:bg-purple-600 rounded-md transition-all text-white"
+                                        title="Copy Address"
+                                    >
+                                        {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Tokenomics */}
-                    <div id="tokenomics" className="token-card p-8 rounded-2xl">
+                    {/* Tokenomics Table */}
+                    <div id="tokenomics" className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
                         <div className="flex items-center mb-6">
-                            <div className="w-12 h-12 bg-purple-900/50 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4 light:bg-purple-100/80">
-                                <TrendingUp className="h-6 w-6 text-pink-400 dark:text-pink-400 light:text-purple-600" />
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                                <TrendingUp className="h-6 w-6 text-pink-400" />
                             </div>
-                            <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-800">Tokenomics Model</h2>
+                            <h2 className="text-2xl font-bold text-white">Tokenomics Model</h2>
                         </div>
-                        <div className="space-y-6">
-                            <p className="text-purple-200 dark:text-purple-200 light:text-gray-600">
-                                The Nazuna Token economic model is designed to incentivize long-term holding, community participation,
-                                and ecosystem growth through carefully balanced token distribution and utility mechanisms.
-                                A portion of the supply is allocated to presale participants, recorded transparently for fair distribution.
-                            </p>
+                        <p className="text-purple-200 mb-6">
+                            The Nazuna Token economic model focuses on sustainable community growth. 
+                            Below is the breakdown of the token supply allocation.
+                        </p>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <h3 className="text-lg font-semibold text-pink-400 dark:text-pink-400 mb-3 light:text-purple-600">
-                                        Distribution Breakdown:
-                                    </h3>
-                                    <ul className="space-y-2 text-purple-200 dark:text-purple-200 light:text-gray-600">
-                                        {constants.tokenomicsData.map((item, index) => (
-                                            <li key={index}>
-                                                <span className="mr-2">•</span>
-                                                {item.percentage}% - {item.label}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-pink-400 dark:text-pink-400 mb-3 light:text-purple-600">
-                                        Utility Features:
-                                    </h3>
-                                    <ul className="space-y-2 text-purple-200 dark:text-purple-200 light:text-gray-600">
-                                        <li>• Transparent token allocation</li>
-                                        <li>• (Planned) staking rewards system</li>
-                                        <li>• Fun integrations with other projects</li>
-                                        <li>• Community giveaways and Discord-based perks</li>
-                                        <li>• Not intended as a financial instrument</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div className="overflow-x-auto rounded-xl border border-purple-500/20">
+                            <table className="w-full text-left border-collapse">
+                                <thead className="bg-purple-900/50 text-pink-400 text-sm uppercase tracking-wider">
+                                    <tr>
+                                        <th className="p-4 font-bold">Category</th>
+                                        <th className="p-4 font-bold">Percent</th>
+                                        <th className="p-4 font-bold">Tokens</th>
+                                        <th className="p-4 font-bold hidden md:table-cell">Role / Scope</th>
+                                        <th className="p-4 font-bold">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-purple-900/10 divide-y divide-purple-500/10 text-purple-100">
+                                    {tokenomicsTable.map((row, index) => (
+                                        <tr key={index} className="hover:bg-purple-900/20 transition-colors">
+                                            <td className="p-4 font-medium">{row.category}</td>
+                                            <td className="p-4 text-pink-300">{row.percent}</td>
+                                            <td className="p-4 font-mono text-white">{row.amount}</td>
+                                            <td className="p-4 text-sm text-purple-200 hidden md:table-cell">{row.role}</td>
+                                            <td className="p-4">
+                                                <span className={`px-3 py-1 rounded-full text-xs font-medium 
+                                                    ${row.status === 'Waiting' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30' : 'bg-gray-500/20 text-gray-300'}`}>
+                                                    {row.status}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {/* Total Row */}
+                                    <tr className="bg-purple-900/40 font-bold border-t border-purple-500/30">
+                                        <td className="p-4 text-white">TOTAL</td>
+                                        <td className="p-4 text-pink-400">100,00 %</td>
+                                        <td className="p-4 text-white font-mono">10,000,000</td>
+                                        <td className="p-4 hidden md:table-cell"></td>
+                                        <td className="p-4"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="mt-4 md:hidden text-xs text-purple-400 italic">
+                            * Scroll horizontally to view full details
                         </div>
                     </div>
 
                     {/* Governance */}
-                    <div id="governance" className="token-card p-8 rounded-2xl">
-                        <div className="flex items-center mb-6">
-                            <div className="w-12 h-12 bg-purple-900/50 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4 light:bg-purple-100/80">
-                                <Users className="h-6 w-6 text-pink-400 dark:text-pink-400 light:text-purple-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-800">
-                                Decentralized Governance
-                            </h2>
-                        </div>
-                        <div className="space-y-4 text-purple-200 dark:text-purple-200 light:text-gray-600">
-                            <p className="text-purple-200">
-                                Currently, Nazuna Token has no DAO or governance system. Any future decisions (such as token burns or staking rules) may be proposed informally on Discord or Twitter and voted manually by community members using off-chain tools.
-                            </p>
-
-                            {/* <p>
-                                Nazuna Token implements a decentralized autonomous organization (DAO) structure that gives token holders
-                                direct control over the project's future development and key decisions.
-                            </p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-purple-900/50 dark:bg-purple-900/50 rounded-full flex items-center justify-center mx-auto mb-3 light:bg-purple-100/80">
-                                        <span className="text-2xl font-bold text-pink-400 dark:text-pink-400 light:text-purple-600">1</span>
-                                    </div>
-                                    <h4 className="font-semibold text-white dark:text-white mb-2 light:text-gray-800">Proposal</h4>
-                                    <p className="text-sm">Community members submit improvement proposals</p>
-                                </div>
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-purple-900/50 dark:bg-purple-900/50 rounded-full flex items-center justify-center mx-auto mb-3 light:bg-purple-100/80">
-                                        <span className="text-2xl font-bold text-pink-400 dark:text-pink-400 light:text-purple-600">2</span>
-                                    </div>
-                                    <h4 className="font-semibold text-white dark:text-white mb-2 light:text-gray-800">Voting</h4>
-                                    <p className="text-sm">Token holders vote on proposals with weighted voting power</p>
-                                </div>
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-purple-900/50 dark:bg-purple-900/50 rounded-full flex items-center justify-center mx-auto mb-3 light:bg-purple-100/80">
-                                        <span className="text-2xl font-bold text-pink-400 dark:text-pink-400 light:text-purple-600">3</span>
-                                    </div>
-                                    <h4 className="font-semibold text-white dark:text-white mb-2 light:text-gray-800">Implementation</h4>
-                                    <p className="text-sm">Approved proposals are automatically executed via smart contracts</p>
-                                </div>
-                            </div> */}
-                        </div>
-                    </div>
-
-                    {/* Global Vision */}
-                    <div className="token-card p-8 rounded-2xl">
-                        <div className="flex items-center mb-6">
-                            <div className="w-12 h-12 bg-purple-900/50 dark:bg-purple-900/50 rounded-xl flex items-center justify-center mr-4 light:bg-purple-100/80">
-                                <Globe className="h-6 w-6 text-pink-400 dark:text-pink-400 light:text-purple-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-800">Vision & Future</h2>
-                        </div>
-                        <div className="space-y-4 text-purple-200 dark:text-purple-200 light:text-gray-600">
-                            <p>
-                                Our vision extends beyond a simple cryptocurrency to create a comprehensive ecosystem that bridges the
-                                gap between anime culture and decentralized finance. We aim to become the premier platform for
-                                anime-inspired digital assets and community-driven experiences.
-                            </p>
-                            <div className="mt-6 p-6 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl border border-purple-800/30">
-                                <h3 className="text-lg font-semibold text-pink-400 dark:text-pink-400 mb-3 light:text-purple-600">
-                                    Roadmap:
-                                </h3>
-
-                                <ul className="space-y-2 text-purple-200">
-                                    <li>• Q2 2025: Rebuild website</li>
-                                    <li>• Q3 2025: Launch token info site, build Discord tools</li>
-                                    <li>• Q4 2025: Introduce staking and limited NFT support</li>
-                                    <li>• 2026: Explore deeper integrations with other mini projects (e.g. games)</li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Team */}
-                    <div id="team" className="token-card p-8 rounded-2xl">
+                    <div id="governance" className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
                         <div className="flex items-center mb-6">
                             <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
                                 <Users className="h-6 w-6 text-pink-400" />
                             </div>
-                            <h2 className="text-2xl font-bold text-white">Team & Community</h2>
+                            <h2 className="text-2xl font-bold text-white">Governance</h2>
                         </div>
-                        <div className="space-y-4 text-purple-200">
-                            <p>
-                                Nazuna Token is developed and maintained by <strong>Wolfy01</strong>, a solo developer passionate about web3,
-                                anime, and building cool things on the internet.
-                            </p>
-                            <ul className="space-y-1">
-                                <li>• Frontend: Next.js + Tailwind</li>
-                                <li>• Blockchain: Polygon</li>
-                                <li>• Community: Discord management and development handled directly</li>
+                        <p className="text-purple-200">
+                            Nazuna Token operates on a "Soft Governance" model. As a solo-dev project, major technical decisions are handled by the creator, but community feedback gathered through Discord and X (Twitter) directly influences the roadmap. We listen to the Hunters.
+                        </p>
+                    </div>
+
+                    {/* Roadmap */}
+                    <div id="roadmap" className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
+                        <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                                <Globe className="h-6 w-6 text-pink-400" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-white">Roadmap 2026</h2>
+                        </div>
+                        <div className="p-6 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl border border-purple-800/30">
+                            <ul className="space-y-3 text-purple-200">
+                                <li className="flex items-start"><span className="text-green-400 mr-2">✓</span> Phase 1: Genesis Airdrop (Completed)</li>
+                                <li className="flex items-start"><span className="text-yellow-400 mr-2">➜</span> Phase 2: Website 2.0 & Token Info (Current)</li>
+                                <li className="flex items-start"><span className="text-purple-400 mr-2">•</span> Phase 3: The Vault (Beta) & Utility Testing</li>
+                                <li className="flex items-start"><span className="text-purple-400 mr-2">•</span> Phase 4: Liquidity Pool Creation on Uniswap</li>
+                                <li className="flex items-start"><span className="text-purple-400 mr-2">•</span> Phase 5: Strategic Partnerships & Season 2</li>
                             </ul>
+                        </div>
+                    </div>
+
+                    {/* Team */}
+                    <div id="team" className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
+                        <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
+                                <Users className="h-6 w-6 text-pink-400" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-white">Team</h2>
+                        </div>
+                        <div className="text-purple-200 space-y-4">
                             <p>
-                                While there is no formal team or VC backing, the project is supported by a small but enthusiastic community
-                                across Discord and Twitter.
+                                Nazuna Token is developed by <strong>Wolfy01</strong>.
                             </p>
-                            <p className="italic text-pink-400">
-                                If you'd like to contribute (dev/design/community), feel free to reach out — it’s an open and friendly project!
+                            <p>
+                                This is a passion project built by a solo developer. There is no VC funding, no hidden team, and no corporate agenda. Just code, anime, and community.
+                            </p>
+                            <p className="text-pink-400 italic mt-4">
+                                "We walk the night together."
                             </p>
                         </div>
                     </div>
 
-
                     {/* Disclaimer */}
-                    <div className="token-card p-8 rounded-2xl border-2 border-yellow-500/30">
-                        <h2 className="text-2xl font-bold text-yellow-400 mb-6">Important Disclaimer</h2>
-                        <div className="space-y-4 text-purple-200 dark:text-purple-200 light:text-gray-600">
+                    <div className="token-card p-8 rounded-2xl border-2 border-yellow-500/30 bg-yellow-900/5">
+                        <h2 className="text-2xl font-bold text-yellow-400 mb-6">Disclaimer</h2>
+                        <div className="space-y-4 text-purple-200">
                             <p>
-                                This whitepaper is for informational purposes only and does not constitute investment advice, financial
-                                advice, trading advice, or any other sort of advice. You should not treat any of the whitepaper's
-                                content as such.
+                                $NZNA is a community/utility token with no promise of financial return.
+                                Cryptocurrencies are volatile and risky.
                             </p>
                             <p>
-                                Cryptocurrency investments carry significant risk, including the potential for total loss of capital.
-                                Past performance does not guarantee future results. Please conduct your own research and consult with
-                                financial advisors before making investment decisions.
+                                This whitepaper is a living document and may change as the project evolves. 
+                                Always do your own research (DYOR).
                             </p>
-                            <p className="font-semibold text-yellow-400">
-                                Nazuna Token is a utility token and should not be considered a security or investment contract.
-                            </p>
-                            <p className="text-yellow-400">
-                                Participation in the presale is voluntary and non-refundable. Ensure you are using the correct wallet address and understand the risks before contributing.
-                            </p>
-
                         </div>
                     </div>
                 </div>

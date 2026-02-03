@@ -5,6 +5,7 @@
       "name": "my-v0-project",
       "dependencies": {
         "@hookform/resolvers": "^3.9.1",
+        "@openzeppelin/contracts": "^5.4.0",
         "@radix-ui/react-accordion": "1.2.2",
         "@radix-ui/react-alert-dialog": "1.1.4",
         "@radix-ui/react-aspect-ratio": "1.1.1",
@@ -58,7 +59,7 @@
         "sonner": "^1.7.1",
         "tailwind-merge": "^2.5.5",
         "tailwindcss-animate": "^1.0.7",
-        "thirdweb": "^5.101.1",
+        "thirdweb": "^5.118.0",
         "three": "^0.176.0",
         "vaul": "^0.9.6",
         "viem": "^2.31.0",
@@ -278,6 +279,8 @@
     "@nodelib/fs.stat": ["@nodelib/fs.stat@2.0.5", "", {}, "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A=="],
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
+
+    "@openzeppelin/contracts": ["@openzeppelin/contracts@5.4.0", "", {}, "sha512-eCYgWnLg6WO+X52I16TZt8uEjbtdkgLC0SUX/xnAksjjrQI4Xfn4iBRoI5j55dmlOhDv1Y7BoR3cU7e3WWhC6A=="],
 
     "@passwordless-id/webauthn": ["@passwordless-id/webauthn@2.3.0", "", {}, "sha512-D3+ncFPHutmwYVI84+5aQrFa42rRu+Rg0/Pxw8fjfyhMEydmeWIwp7kNONdZpqBjzXI1IMcGUBuJy931aE/Y7Q=="],
 

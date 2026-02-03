@@ -2,32 +2,31 @@ export default function RoadmapSection() {
   const roadmapPhases = [
     {
       phase: 1,
-      title: "Soft Relaunch",
+      title: "Genesis Airdrop",
       description:
-        "Website redesign, wallet integration, updated whitepaper, pre-sale(maybe), and token info. Prepare infrastructure for growth with minimal costs.",
-      quarter: "Q2 2025",
+        "Distribution of initial supply to early adopters and active community members via Zealy sprints. (Completed)",
+      quarter: "Q1 2026",
     },
     {
       phase: 2,
-      title: "Community Spark",
+      title: "Website 2.0 & Token Info",
       description:
-        "Organic promotion via Discord, Twitter, and YouTube. Optional airdrop and feedback collection. Focus on building a small but engaged fanbase.",
-      quarter: "Q3 2025",
+        "Launch of the new website, updated whitepaper, and detailed tokenomics disclosure. Building the foundation. (Current)",
+      quarter: "Q1 2026",
     },
     {
       phase: 3,
-      title: "Utility Expansion",
+      title: "The Vault & Utility",
       description:
-        "Add staking, launch basic dashboard, explore NFT integration." ,
-        // "Collaborate with indie or anime-inspired Web3 creators.",
-      quarter: "Q4 2025",
+        "Beta launch of 'The Vault' and testing of utility mechanisms. Gamified ecosystem engagement begins.",
+      quarter: "Q3 2026",
     },
     {
       phase: 4,
-      title: "Exploration & Feedback",
+      title: "Liquidity Pool Creation",
       description:
-        "No promises — future steps depend on the community. Possible game-like experiences, Discord integrations, or more.",
-      quarter: "2026 and beyond",
+        "Official listing and liquidity pool creation on Uniswap/QuickSwap. Opening the market for everyone.",
+      quarter: "Q4 2026",
     },
   ];
 

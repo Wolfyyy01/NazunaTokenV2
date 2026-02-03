@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Shield, Eye, Cookie, Database, Contact } from "lucide-react";
@@ -16,10 +15,10 @@ export default function PrivacyPolicy() {
       title: "1. What We Collect",
       icon: Database,
       content: [
-        "We do not collect any personal data such as your name or email.",
-        "However, during the presale, we store wallet addresses and token purchase amounts in a local database. This is used solely to track contributions and ensure accurate token distribution.",
-        "All blockchain data (including wallet addresses and transactions) is publicly available and stored on the Polygon network.",
-        "Wallet connection is handled securely via thirdweb.com. We do not track wallet connection history or behavior.",
+        "We do not collect any personal data such as your name, email, or physical address.",
+        "To facilitate airdrops and community rewards, we may temporarily store wallet addresses and activity points (e.g., from Zealy or our platform) in our database to ensure accurate distribution of $NZNA.",
+        "All blockchain transactions (including wallet addresses and transfers) are publicly available and permanently stored on the Polygon network.",
+        "Wallet connection is handled securely via third-party providers. We do not track your private keys, seed phrases, or personal wallet behavior.",
       ],
     },
     {
@@ -27,9 +26,9 @@ export default function PrivacyPolicy() {
       title: "2. How We Use Data",
       icon: Eye,
       content: [
-        "We use the wallet addresses and amounts solely for tracking contributions and enabling the post-presale claim process.",
-        "We do not sell, share, or use this data for any marketing or analytics purposes.",
-        "You may see your wallet address and token amount displayed in our leaderboard or confirmation screens — this is for transparency only.",
+        "Wallet addresses are used solely for tracking community contributions, validating airdrop eligibility, and enabling future ecosystem features.",
+        "We do not sell, trade, or share any collected data with marketing firms or third-party analytics companies.",
+        "Public leaderboards may display truncated wallet addresses and token balances to maintain transparency within the Night Walkers community.",
       ],
     },
     {
@@ -37,9 +36,11 @@ export default function PrivacyPolicy() {
       title: "3. Third-Party Services",
       icon: Shield,
       content: [
-        "We use thirdweb.com for wallet integration and smart contract interaction.",
-        "Their own privacy policies apply when using their services (e.g. MetaMask, WalletConnect).",
-        "We do not use analytics tools like Google Analytics or Facebook Pixel.",
+        "We use Thirdweb for secure wallet integration and smart contract interactions.",
+        "When connecting your wallet, the privacy policies of your specific provider (e.g., MetaMask, Rabby, Coinbase Wallet) apply.",
+        "We intentionally avoid using invasive tracking tools like Google Analytics or Facebook Pixels to protect our Hunters' privacy.",
+        "We use Vercel Analytics to monitor website performance and traffic patterns. This helps us ensure a smooth experience for all Hunters without collecting personally identifiable information (PII).",
+        "Google Search Console is used to monitor our site's presence in search results. It provides us with anonymized data about how users find our lair.",
       ],
     },
     {
@@ -47,9 +48,10 @@ export default function PrivacyPolicy() {
       title: "4. Cookies and Tracking",
       icon: Cookie,
       content: [
-        "We do not use cookies or any browser-based tracking.",
-        "If any cookies are set, they originate from third-party wallet providers.",
-        "You can clear or block cookies from your browser settings at any time.",
+        "Our website does not use tracking cookies for advertising or profiling.",
+        "Essential technical cookies may be set by your wallet provider or the decentralized infrastructure to maintain your session.",
+        "You can manage or block these cookies through your browser settings at any time.",
+        "Vercel Analytics is designed to be privacy-friendly and typically does not use invasive cookies to track you across the web."
       ],
     },
     {
@@ -57,11 +59,10 @@ export default function PrivacyPolicy() {
       title: "5. Security",
       icon: Shield,
       content: [
-        "We follow best practices in our smart contracts and frontend code.",
-        "No sensitive personal data is stored or processed by us.",
-        "Presale data (wallets + amounts) is stored securely in a local database and not shared externally.",
-        "Contracts are deployed on verified networks and code is publicly auditable.",
-        "Wallet safety remains your responsibility; we will never ask for private keys or seed phrases.",
+        "We follow industry best practices for our smart contracts and frontend security.",
+        "No sensitive personal data is ever stored by us. Your security is on-chain.",
+        "Our smart contracts are deployed on verified networks and are open for public audit.",
+        "Important: Wallet safety is your responsibility. Nazuna Token team members will NEVER ask for your private keys or seed phrases.",
       ],
     },
     {
@@ -69,9 +70,11 @@ export default function PrivacyPolicy() {
       title: "6. Contact Us",
       icon: Contact,
       content: [
-        "If you have questions about your privacy or how the site works, contact us through:",
+        "If you have questions about your privacy or the Night Walkers ecosystem, join us through:",
         `Discord: ${constants.discord_url}`,
-        "Telegram: @nazunatoken",
+        `Telegram: ${constants.telegram_url}`,
+        `Twitter: ${constants.twitter_url}`,
+        `Email: ${constants.email}`,
       ],
     }
   ];
@@ -91,13 +94,13 @@ export default function PrivacyPolicy() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Privacy Policy</span>
           </h1>
-          <p className="text-lg text-purple-200">Last updated: June 2025</p>
+          <p className="text-lg text-purple-200">Last updated: January 2026</p>
         </div>
 
         {/* Sections */}
         <div className="space-y-12">
           {sections.map((section) => (
-            <div key={section.id} className="token-card p-8 rounded-2xl">
+            <div key={section.id} className="token-card p-8 rounded-2xl border border-purple-500/20 bg-purple-900/10">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center mr-4">
                   <section.icon className="h-6 w-6 text-pink-400" />
@@ -117,5 +120,4 @@ export default function PrivacyPolicy() {
       </div>
     </div>
   );
-
 }
